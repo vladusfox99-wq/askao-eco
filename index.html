@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Строительная B2B-платформа</title>
+  <style>
+    :root {
+      --bg: #f5f8fc;
+      --white: #ffffff;
+      --ink: #10233f;
+      --muted: #65758c;
+      --blue: #1062ff;
+      --blue-2: #0a8dff;
+      --cyan: #49d6ff;
+      --navy: #071f44;
+      --line: #dbe5f1;
+      --soft: #eef5ff;
+      --green: #19b394;
+      --radius: 22px;
+      --shadow: 0 18px 48px rgba(16, 35, 63, .12);
+      --container: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--container), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(219,229,241,.8);
+    }
+
+    .header-inner {
+      min-height: 78px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      color: var(--ink);
+    }
+
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+    }
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 12px;
+      margin-top: -2px;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 22px;
+      color: #34435a;
+      font-size: 14px;
+      font-weight: 800;
+      white-space: nowrap;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+    }
+    .nav a:hover { color: var(--blue); }
+
+    .btn {
+      min-height: 48px;
+      padding: 0 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 900;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue), var(--blue-2));
+      color: white;
+      box-shadow: 0 14px 30px rgba(16,98,255,.24);
+    }
+    .btn-primary:hover { transform: translateY(-1px); }
+    .btn-secondary {
+      background: white;
+      border-color: var(--line);
+      color: var(--ink);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 22% 18%, rgba(73,216,255,.32), transparent 28%),
+        radial-gradient(circle at 86% 20%, rgba(16,98,255,.24), transparent 30%),
+        linear-gradient(180deg, #ffffff 0%, #eff6ff 100%);
+      padding: 86px 0 72px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% -180px -10%;
+      height: 300px;
+      background: linear-gradient(90deg, rgba(16,98,255,.10), rgba(73,216,255,.14));
+      transform: skewY(-4deg);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.02fr .98fr;
+      align-items: center;
+      gap: 52px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: #eaf3ff;
+      border: 1px solid #cfe0ff;
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 22px;
+      font-size: clamp(38px, 5.2vw, 66px);
+      line-height: .98;
+      letter-spacing: -.05em;
+      color: var(--ink);
+    }
+
+    .hero-text {
+      margin: 0 0 28px;
+      max-width: 650px;
+      font-size: 20px;
+      color: #52657f;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .hero-points {
+      display: grid;
+      gap: 12px;
+      max-width: 680px;
+    }
+    .hero-point {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      color: #31445f;
+      font-weight: 700;
+    }
+    .check {
+      flex: 0 0 24px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #dff8f2;
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 900;
+      margin-top: 1px;
+    }
+
+    .hero-visual {
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(219,229,241,.95);
+      border-radius: 30px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .data-card {
+      border-radius: 24px;
+      background: linear-gradient(180deg, #0b2d66, #08224d);
+      color: white;
+      padding: 22px;
+      min-height: 470px;
+      position: relative;
+      overflow: hidden;
+    }
+    .data-card::before {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      right: -90px;
+      top: -90px;
+      background: radial-gradient(circle, rgba(73,216,255,.42), transparent 64%);
+    }
+
+    .data-top {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+    .data-top strong { font-size: 18px; }
+    .status {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(25,179,148,.16);
+      color: #8ff4dd;
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .data-search {
+      position: relative;
+      min-height: 52px;
+      border-radius: 16px;
+      background: white;
+      color: #75849a;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      margin-bottom: 16px;
+    }
+
+    .data-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .mini-card {
+      border-radius: 18px;
+      padding: 16px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.13);
+    }
+    .mini-card b {
+      display: block;
+      font-size: 24px;
+      margin-bottom: 4px;
+    }
+    .mini-card span { color: #cfe3ff; font-size: 14px; }
+
+    .wide-card {
+      position: relative;
+      margin-top: 12px;
+      border-radius: 18px;
+      padding: 16px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.13);
+    }
+    .data-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      color: #dce9ff;
+      font-size: 14px;
+    }
+    .data-row:last-child { border-bottom: 0; }
+
+    .section { padding: 72px 0; }
+    .section-head {
+      max-width: 850px;
+      margin-bottom: 30px;
+    }
+    .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+    .section-kicker {
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-weight: 900;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      margin: 0 0 14px;
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.08;
+      letter-spacing: -.04em;
+    }
+    .section-head p { margin: 0; color: var(--muted); font-size: 18px; }
+
+    .benefits-wrapper {
+      position: relative;
+      text-align: center;
+    }
+
+    .benefits-title {
+      margin-bottom: 40px;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      align-items: center;
+    }
+
+    .benefit-card {
+      position: relative;
+      padding: 32px;
+      border-radius: 20px;
+      background: #eaf3ff;
+      border: none;
+      box-shadow: none;
+      overflow: hidden;
+      min-height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .benefit-card::before {
+      content: attr(data-num);
+      position: absolute;
+      font-size: 120px;
+      font-weight: 900;
+      color: rgba(16,98,255,0.08);
+      top: 10px;
+      left: 20px;
+      pointer-events: none;
+    }
+
+    .benefit-card h3 {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.4;
+    }
+
+    .benefit-center {
+      grid-column: 2;
+      grid-row: 1;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .benefit-top-left { grid-column: 1; }
+    .benefit-top-right { grid-column: 3; }
+    .benefit-bottom-left { grid-column: 1; }
+    .benefit-bottom-center { grid-column: 2; }
+    .benefit-bottom-right { grid-column: 3; }
+
+    .function-card,
+    .news-card,
+    .contact-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 12px 34px rgba(16,35,63,.08);
+    }
+
+    .function-card h3,
+    .news-card h3,
+    .contact-card h3 { margin: 0 0 10px; font-size: 20px; }
+
+    .function-card p,
+    .news-card p,
+    .contact-card p { margin: 0; color: var(--muted); }
+
+    .icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #e8f2ff, #def9ff);
+      color: var(--blue);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .functions { background: #ffffff; }
+    .functions-layout {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 44px;
+      align-items: start;
+    }
+    .function-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .blue-panel {
+      background: linear-gradient(180deg, #0c3b84, #092a5f);
+      color: white;
+      border-radius: 30px;
+      padding: 30px;
+      min-height: 100%;
+      box-shadow: var(--shadow);
+    }
+    .blue-panel h3 { margin: 0 0 16px; font-size: 30px; line-height: 1.1; }
+    .blue-panel p { color: #d6e7ff; margin: 0 0 20px; }
+    .blue-list { display: grid; gap: 12px; }
+    .blue-line {
+      padding: 13px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.09);
+      border: 1px solid rgba(255,255,255,.12);
+      color: #edf6ff;
+    }
+
+    .market-strip {
+      background: linear-gradient(135deg, #071f44, #0c3b84);
+      color: white;
+      padding: 34px 0;
+    }
+    .strip-grid {
+      display: grid;
+      grid-template-columns: 1.2fr repeat(3, .8fr);
+      gap: 24px;
+      align-items: center;
+    }
+    .strip-grid strong { display: block; font-size: 34px; line-height: 1; margin-bottom: 6px; }
+    .strip-grid span { color: #cfe3ff; }
+
+    .news-grid,
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .news-date {
+      color: var(--blue);
+      font-weight: 900;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .cta {
+      padding: 72px 0;
+      background: linear-gradient(180deg, #eef6ff, #ffffff);
+    }
+    .cta-box {
+      border-radius: 32px;
+      background: white;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      padding: 34px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 24px;
+      align-items: center;
+    }
+    .cta-form { display: grid; gap: 12px; }
+    .cta-form input,
+    .cta-form select {
+      width: 100%;
+      min-height: 50px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      padding: 0 14px;
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .footer {
+      background: #071f44;
+      color: #d6e7ff;
+      padding: 36px 0;
+    }
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr .8fr;
+      gap: 28px;
+    }
+    .footer h3 { color: white; margin: 0 0 10px; }
+    .footer p { margin: 0; color: #bed3ef; }
+
+    @media (max-width: 1080px) {
+      .header-inner,
+      .hero-grid,
+      .functions-layout,
+      .cta-box,
+      .footer-inner { grid-template-columns: 1fr; }
+      .nav { justify-content: flex-start; flex-wrap: nowrap; }
+      .benefits-grid,
+      .strip-grid { grid-template-columns: repeat(2, 1fr); }
+      .benefit-center,
+      .benefit-top-left,
+      .benefit-top-right,
+      .benefit-bottom-left,
+      .benefit-bottom-center,
+      .benefit-bottom-right { grid-column: auto; grid-row: auto; }
+      .news-grid,
+      .contacts-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+      .hero { padding: 48px 0; }
+      .hero-actions { align-items: stretch; }
+      .btn { width: 100%; }
+      .benefits-grid,
+      .function-list,
+      .strip-grid,
+      .data-grid { grid-template-columns: 1fr; }
+      .header { position: static; }
+      .data-card { min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a class="brand" href="#top">
+        <img class="brand-logo" src="assets/askao-logo.png" alt="Логотип АСКАО" />
+        <span>Экосистема АСКАО<small>Технологии · Материалы · Подряд</small></span>
+      </a>
+      <nav class="nav">
+        <a href="#top">Главная</a>
+        <a href="#news">Новости</a>
+        <a href="#">АСКАО.Витрина</a>
+        <a href="#">АСКАО.Наука</a>
+        <a href="#">Проекты</a>
+        <a href="services.html">Услуги</a>
+        <a href="#">Финансово-Юридические услуги</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Цифровая B2B-платформа</div>
+          <h1>АСКАО — платформа для строительной отрасли, объединяющая компании с сфере атомного, промышленного, инфраструктурного и коммерческого сооружения</h1>
+          <p class="hero-text">Единая среда для работы с материалами, поставщиками, подрядчиками и техническими требованиями. Поиск, сравнение, тендеры и проверка контрагентов в одном интерфейсе.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#cta">Получить доступ</a>
+            <a class="btn btn-secondary" href="#functions">Смотреть функционал</a>
+          </div>
+          <div class="hero-points">
+            <div class="hero-point"><span class="check">✓</span><span>Источник структурированных данных о материалах, подрядчиках и технологиях строительства.</span></div>
+            <div class="hero-point"><span class="check">✓</span><span>Мгновенный поиск по характеристикам, срокам поставки, региону и требованиям проекта.</span></div>
+            <div class="hero-point"><span class="check">✓</span><span>Сокращение сроков закупки и подготовки технических решений для крупных проектов.</span></div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="data-card">
+            <div class="data-top">
+              <strong>Единое окно закупщика</strong>
+              <span class="status">Данные актуальны</span>
+            </div>
+            <div class="data-search">Поиск: бетон B25, арматура А500С, подрядчик СМР...</div>
+            <div class="data-grid">
+              <div class="mini-card"><b>12 400+</b><span>позиций в витрине</span></div>
+              <div class="mini-card"><b>780+</b><span>компаний в базе</span></div>
+              <div class="mini-card"><b>2–3x</b><span>ускорение подбора</span></div>
+              <div class="mini-card"><b>24/7</b><span>доступ к данным</span></div>
+            </div>
+            <div class="wide-card">
+              <div class="data-row"><span>Материал</span><strong>Бетон М350</strong></div>
+              <div class="data-row"><span>Поставщик</span><strong>Проверен</strong></div>
+              <div class="data-row"><span>Срок КП</span><strong>1–3 дня</strong></div>
+              <div class="data-row"><span>Документы</span><strong>Сертификаты / НДС</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="benefits">
+      <div class="container">
+        <div class="section-head center">
+          <div class="section-kicker">5 ключевых преимуществ</div>
+          <h2>Платформа данных для строительных закупок и подрядов</h2>
+          <p>Визуальная логика основана на строгом корпоративном стиле: светлый фон, синие акценты, карточная структура, крупный технологичный hero-блок и отдельные переходы к связанным платформам.</p>
+        </div>
+        <div class="benefits-wrapper">
+          <div class="benefits-title">
+            <h2>ТМиК</h2>
+            <p>5 ключевых преимуществ</p>
+          </div>
+
+          <div class="benefits-grid">
+            <article class="benefit-card benefit-top-left" data-num="1">
+              <h3>Система поддержки научных разработок в строительной отрасли</h3>
+            </article>
+
+            <article class="benefit-card benefit-center">
+              <h3>Экосистема АСКАО</h3>
+            </article>
+
+            <article class="benefit-card benefit-top-right" data-num="2">
+              <h3>Система взаимодействия организаций атомного и промышленного строительства</h3>
+            </article>
+
+            <article class="benefit-card benefit-bottom-left" data-num="3">
+              <h3>Торговая площадка для генеральных подрядчиков и поставщиков</h3>
+            </article>
+
+            <article class="benefit-card benefit-bottom-center" data-num="4">
+              <h3>Система оперативного производства металлических конструкций</h3>
+            </article>
+
+            <article class="benefit-card benefit-bottom-right" data-num="5">
+              <h3>Платформа поддержки проектов</h3>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section functions" id="functions">
+      <div class="container functions-layout">
+        <div class="blue-panel">
+          <h3>Базовый функционал</h3>
+          <p>Функциональность адаптирована под строительный B2B-маркетплейс: не просто витрина товаров, а инструмент для закупочного и технического решения.</p>
+          <div class="blue-list">
+            <div class="blue-line">Единый кодификатор строительных данных</div>
+            <div class="blue-line">Характеристики, зависимости и применимость</div>
+            <div class="blue-line">Поставщики, подрядчики и компетенции</div>
+            <div class="blue-line">Интеграция с 1С, ERP, BIM, CAD/CAE</div>
+          </div>
+        </div>
+        <div class="function-list">
+          <article class="function-card"><div class="icon">М</div><h3>Материалы</h3><p>Каталог материалов с параметрами, сертификатами, аналогами и историей применения.</p></article>
+          <article class="function-card"><div class="icon">Т</div><h3>Технологии</h3><p>Технологические процессы, требования, методики испытаний и условия использования.</p></article>
+          <article class="function-card"><div class="icon">К</div><h3>Конструкции</h3><p>Связь материалов, проектных решений и конструктивных элементов.</p></article>
+          <article class="function-card"><div class="icon">П</div><h3>Партнеры</h3><p>Поиск компаний, компетенций, географии поставки и условий сотрудничества.</p></article>
+          <article class="function-card"><div class="icon">Д</div><h3>Документы</h3><p>Цифровые паспорта, сертификаты, договорные файлы и подтверждающие материалы.</p></article>
+          <article class="function-card"><div class="icon">А</div><h3>Аналитика</h3><p>Сравнение стоимости, сроков, надежности и эффективности закупочного процесса.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="market-strip">
+      <div class="container strip-grid">
+        <div><h2 style="margin:0;color:white;">Стандартизация обмена индустриальными данными</h2></div>
+        <div><strong>500+</strong><span>категорий материалов</span></div>
+        <div><strong>1–3 дня</strong><span>до первых КП</span></div>
+        <div><strong>API</strong><span>для корпоративных систем</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="news">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Новости проекта</div>
+          <h2>Развитие платформы и отраслевые события</h2>
+          <p>Этот блок нужен для доверия: корпоративные клиенты должны видеть, что платформа развивается, участвует в мероприятиях и подключает партнеров.</p>
+        </div>
+        <div class="news-grid">
+          <article class="news-card"><div class="news-date">15.02.2026</div><h3>Платформа представлена на отраслевом форуме</h3><p>Демонстрация сценариев поиска материалов, подрядчиков и формирования технических решений.</p></article>
+          <article class="news-card"><div class="news-date">20.03.2026</div><h3>Запущена витрина поставщиков</h3><p>Появились карточки компаний, номенклатура, документы и быстрый запрос коммерческого предложения.</p></article>
+          <article class="news-card"><div class="news-date">12.04.2026</div><h3>Добавлены интеграции</h3><p>Подготовлен контур обмена данными с ERP, BIM и внутренними корпоративными справочниками.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contacts">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Контакты</div>
+          <h2>Единая точка входа для заказчиков, поставщиков и подрядчиков</h2>
+        </div>
+        <div class="contacts-grid">
+          <article class="contact-card"><h3>Адрес</h3><p>Москва, корпоративный контур платформы</p></article>
+          <article class="contact-card"><h3>Телефон</h3><p>+7 (000) 000-00-00</p></article>
+          <article class="contact-card"><h3>E-mail</h3><p>market@example.ru</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="cta">
+      <div class="container cta-box">
+        <div>
+          <div class="section-kicker">Доступ к платформе</div>
+          <h2>Запросите демонстрацию B2B-маркетплейса</h2>
+          <p style="color:var(--muted);margin:0;">Оставьте данные, чтобы получить презентацию, сценарий пилота и перечень интеграций под вашу организацию.</p>
+        </div>
+        <form class="cta-form">
+          <input type="text" placeholder="Имя" />
+          <input type="text" placeholder="Компания" />
+          <input type="email" placeholder="Email" />
+          <select><option>Я заказчик</option><option>Я поставщик</option><option>Я подрядчик</option></select>
+          <button class="btn btn-primary" type="button">Запросить демо</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div><h3>СтройДанные</h3><p>Демонстрационный дизайн B2B-платформы для строительных закупок, материалов и подрядов.</p></div>
+      <div><h3>Платформы</h3><p>Строй.Витрина<br>Строй.Наука<br>Строй.Маркет</p></div>
+      <div><h3>Разделы</h3><p>Преимущества<br>Функции<br>Новости<br>Контакты</p></div>
+    </div>
+  </footer>
+</body>
+</html>

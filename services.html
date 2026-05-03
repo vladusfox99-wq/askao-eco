@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Услуги | Экосистема АСКАО</title>
+  <style>
+    :root {
+      --bg: #eef2f7;
+      --card: #ffffff;
+      --ink: #243247;
+      --muted: #56657a;
+      --navy: #233867;
+      --line: #d9e1ec;
+      --shadow: 0 8px 22px rgba(28, 45, 76, .08);
+      --radius: 8px;
+      --container: 1680px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .header-inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      color: var(--navy);
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+    }
+
+    .nav {
+      display: flex;
+      gap: 18px;
+      white-space: nowrap;
+      overflow-x: auto;
+      font-weight: 700;
+      color: #34435a;
+    }
+
+    .nav a:hover,
+    .nav .active { color: var(--navy); }
+
+    .page {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 24px 20px 56px;
+    }
+
+    .page-title {
+      margin: 0 0 20px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .services-layout {
+      display: grid;
+      grid-template-columns: 540px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .sidebar {
+      display: grid;
+      gap: 14px;
+    }
+
+    .category-btn {
+      min-height: 50px;
+      padding: 0 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      color: var(--ink);
+      font-weight: 700;
+      cursor: pointer;
+      text-align: left;
+      box-shadow: 0 2px 8px rgba(28, 45, 76, .03);
+    }
+
+    .category-btn.active {
+      background: var(--navy);
+      color: #fff;
+      border-color: var(--navy);
+      box-shadow: inset 4px 0 0 rgba(255,255,255,.18), 0 6px 16px rgba(35, 56, 103, .22);
+    }
+
+    .services-content {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .service-card {
+      min-height: 185px;
+      background: var(--card);
+      border: 1px solid rgba(217, 225, 236, .8);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .service-card-body {
+      padding: 22px 24px;
+    }
+
+    .service-card h3 {
+      margin: 0 0 18px;
+      font-size: 16px;
+      line-height: 1.35;
+      color: var(--ink);
+    }
+
+    .service-card p,
+    .service-card ul {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .service-card ul { padding-left: 16px; }
+
+    .service-card-footer {
+      min-height: 58px;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      border-top: 1px solid rgba(238, 242, 247, .95);
+      background: linear-gradient(180deg, rgba(255,255,255,.2), #ffffff);
+    }
+
+    .consult-btn {
+      min-height: 38px;
+      padding: 0 18px;
+      border: none;
+      border-radius: 4px;
+      background: var(--navy);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .consult-btn::before {
+      content: "?";
+      display: inline-flex;
+      width: 16px;
+      height: 16px;
+      margin-right: 8px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,.18);
+      font-size: 11px;
+    }
+
+    .hidden { display: none; }
+
+    @media (max-width: 1100px) {
+      .services-layout { grid-template-columns: 1fr; }
+      .services-content { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <img class="brand-logo" src="assets/askao-logo.png" alt="Логотип АСКАО" />
+        <span>Экосистема АСКАО</span>
+      </a>
+      <nav class="nav">
+        <a href="index.html">Главная</a>
+        <a href="index.html#news">Новости</a>
+        <a href="#">АСКАО.Витрина</a>
+        <a href="#">АСКАО.Наука</a>
+        <a href="#">Проекты</a>
+        <a class="active" href="services.html">Услуги</a>
+        <a href="#">Финансово-Юридические услуги</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <h1 class="page-title">Услуги</h1>
+
+    <div class="services-layout">
+      <aside class="sidebar" aria-label="Категории услуг">
+        <button class="category-btn active" data-category="support">⌕ Консалтинг в области мер государственной поддержки</button>
+        <button class="category-btn" data-category="finance">▣ Кредитно-финансовые услуги для бизнеса</button>
+        <button class="category-btn" data-category="certification">● Сертификация, техническая экспертиза и проведение испытаний</button>
+        <button class="category-btn" data-category="ip">⚑ Регистрация и защита интеллектуальной собственности</button>
+        <button class="category-btn" data-category="cfa">₿ Помощь в организации выпусков ЦФА</button>
+        <button class="category-btn" data-category="insurance">♙ Страхование для юридических лиц</button>
+        <button class="category-btn" data-category="leasing">▦ Лизинг для юридических лиц</button>
+      </aside>
+
+      <section class="services-content" data-content="support">
+        <article class="service-card"><div class="service-card-body"><h3>Привлечение финансирования</h3><p>Оказание консультационных услуг для организаций промышленности и МСП по подходящим федеральным и региональным мерам поддержки, возможным к привлечению на конкретный инвестиционный проект.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Подготовка документов</h3><p>Подготовка полного комплекта документов для привлечения финансирования в ФИОИВах/РОИВах, институтах развития, кредитных организациях.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Решения для группы компаний</h3><p>Подготовка комплексного программного решения под ключ для группы промышленных компаний конкретного региона подходящих источников финансирования.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Взаимодействие с крупными заказчиками</h3><p>Подготовка дорожной карты по участию организаций в госпрограммах, федеральных проектах и взаимодействию с корпорациями.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Маркетинговые исследования</h3><p>Подготовка дорожной карты для организаций, стремящихся сотрудничать с корпорациями, крупными холдингами и интегрированными структурами.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+      </section>
+
+      <section class="services-content hidden" data-content="finance">
+        <article class="service-card"><div class="service-card-body"><h3>Банковская гарантия</h3><p>Письменное обязательство банка выплатить определенную сумму денег бенефициару, если принципал не выполнит свои обязательства перед ним.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Невозобновляемая кредитная линия</h3><p>Форма кредита, при которой заемщик может получать средства частями в рамках установленного лимита и срока.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Возобновляемая кредитная линия</h3><p>Форма кредита, при которой заемщик может многократно получать и погашать кредит в рамках установленного лимита.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Кредит на развитие бизнеса</h3><p>Целевой кредит для предпринимателей на расширение бизнеса, покупку оборудования, ремонт помещений или пополнение товарных запасов.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Кредиты для бизнеса с господдержкой</h3><p>Льготные кредиты, часть процентной ставки по которым субсидируется государством.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Поручительство фондов для бизнеса</h3><p>Государственная гарантия, при которой фонд берет на себя часть рисков банка при кредитовании бизнеса.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Лизинг</h3><p>Долгосрочная аренда имущества с правом последующего выкупа.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Факторинг</h3><p>Выкуп банком или факторинговой компанией дебиторской задолженности бизнеса.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+      </section>
+
+      <section class="services-content hidden" data-content="certification">
+        <article class="service-card"><div class="service-card-body"><h3>Экспертиза промышленной безопасности</h3><ul><li>Технические устройства, применяемые на ОПО</li><li>Здания и сооружения на ОПО</li><li>Документация на техническое перевооружение</li><li>Декларация промышленной безопасности</li></ul></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Технический надзор за объектами строительства</h3><ul><li>Оценка соответствия оборудования требованиям</li><li>Строительный и геодезический контроль</li><li>Технический надзор</li><li>Анализ проектно-сметной документации</li></ul></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Экологическое сопровождение/проектирование</h3><ul><li>Раздел ПМООС, ОВОС, проект СЗЗ</li><li>Экологическое нормирование</li><li>Экологический аудит</li><li>Сертификация в системе</li></ul></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Метрология</h3><ul><li>Метрологическая экспертиза документации</li><li>Испытания средств измерений</li><li>Аттестация испытательного оборудования</li><li>Калибровка средств измерений</li></ul></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Разработка технической документации</h3><ul><li>Техническая документация</li><li>Паспорта изделий</li><li>Руководство по эксплуатации</li><li>Расчет на прочность</li><li>Экологическое проектирование</li></ul></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Сертификация аккредитованным органом</h3><p>Сертификация по регламентам Таможенного союза и иным обязательным требованиям.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+      </section>
+
+      <section class="services-content hidden" data-content="ip">
+        <article class="service-card"><div class="service-card-body"><h3>Регистрация товарного знака</h3></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Международная регистрация товарного знака</h3></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Патентование изобретения, полезной модели или промышленного образца</h3></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Регистрация программы ЭВМ в ФИПС</h3></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Регистрация программы ЭВМ в Минцифры</h3></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Внесение решения в реестр Минпромторга</h3></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Оценка нематериального актива</h3></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+      </section>
+
+      <section class="services-content hidden" data-content="cfa">
+        <article class="service-card"><div class="service-card-body"><h3>Подготовка документов для онбординга на платформе-операторе ЦФА</h3></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Структурирование сделок</h3></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Организация выпуска ЦФА</h3></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Дистрибуция ЦФА</h3></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+      </section>
+
+      <section class="services-content hidden" data-content="insurance">
+        <article class="service-card"><div class="service-card-body"><h3>Защита имущества</h3><p>Защита производственных и складских помещений, техники, оборудования, готовой продукции и материалов.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Страхование строительно-монтажных работ</h3><p>Защита от рисков повреждения или гибели имущества в результате пожаров, взрывов, падений механизмов и природных явлений.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Страхование буровых работ и скважин</h3><p>Защита от потери контроля над скважиной и ответственности перед третьими лицами.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Страхование грузов</h3><p>Покрывает весь процесс перевозки от двери до двери.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Транспортное страхование</h3><p>Страхование автопарка от аварий, угонов и прочих происшествий на дорогах.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Страхование военных рисков</h3><p>Покрытие ущерба на новых территориях и вследствие военных действий.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+      </section>
+
+      <section class="services-content hidden" data-content="leasing">
+        <article class="service-card"><div class="service-card-body"><h3>Анализ потребностей</h3><p>Определим, какое оборудование или техника необходима, и подберем оптимальные условия.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Выбор лизингового предложения</h3><p>Проведем сравнительный анализ и предложим наиболее выгодные условия.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Подготовка документации</h3><p>Содействие в сборе и подготовке необходимых документов для рассмотрения заявки.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Заключение договора</h3><p>Помощь в согласовании условий и проверке корректности договора.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+        <article class="service-card"><div class="service-card-body"><h3>Постпродажное сопровождение</h3><p>Поддержка по вопросам сопровождения лизингового договора.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const buttons = document.querySelectorAll('.category-btn');
+    const contents = document.querySelectorAll('[data-content]');
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const category = button.dataset.category;
+
+        buttons.forEach((item) => item.classList.remove('active'));
+        button.classList.add('active');
+
+        contents.forEach((content) => {
+          content.classList.toggle('hidden', content.dataset.content !== category);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
