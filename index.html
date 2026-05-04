@@ -446,6 +446,16 @@
       box-shadow: 0 14px 28px rgba(16, 35, 63, .10);
     }
 
+    .benefit-link {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .benefit-link:focus-visible {
+      outline: 3px solid rgba(16,98,255,.55);
+      outline-offset: 2px;
+    }
+
     .benefit-center {
       grid-column: 2;
       grid-row: 1;
@@ -675,14 +685,12 @@
         <span>Экосистема АСКАО<small>Технологии · Материалы · Подряд</small></span>
       </a>
       <nav class="nav">
-        <a href="#top">Главная</a>
         <a href="#functions">Закупки</a>
         <a href="#news">Новости</a>
-        <a href="#">АСКАО.Витрина</a>
+        <a href="https://accni.scalesta.net/" target="_blank" rel="noopener noreferrer">АСКАО.Витрина</a>
         <a href="https://askao.innosfera.ru/" target="_blank" rel="noopener noreferrer">АСКАО.Наука</a>
         <a href="#">Проекты</a>
-        <a href="services.html">Услуги</a>
-        <a href="#">Финансово-Юридические услуги</a>
+        <a href="services.html#finance-services">Финансово-Юридические услуги</a>
       </nav>
     </div>
   </header>
@@ -723,25 +731,25 @@
           </div>
 
           <div class="benefits-grid">
-            <article class="benefit-card benefit-top-left" data-num="1">
+            <a class="benefit-card benefit-top-left benefit-link" data-num="1" href="https://askao.innosfera.ru/" target="_blank" rel="noopener noreferrer">
               <h3>Система поддержки научных разработок в строительной отрасли</h3>
-            </article>
+            </a>
 
             <article class="benefit-card benefit-center">
               <h3>Экосистема АСКАО</h3>
             </article>
 
-            <article class="benefit-card benefit-top-right" data-num="2">
+            <a class="benefit-card benefit-top-right benefit-link" data-num="2" href="https://accni.scalesta.net/" target="_blank" rel="noopener noreferrer">
               <h3>Система взаимодействия организаций атомного и промышленного строительства</h3>
-            </article>
+            </a>
 
-            <article class="benefit-card benefit-bottom-left" data-num="3">
+            <a class="benefit-card benefit-bottom-left benefit-link" data-num="3" href="https://b2b.askao.innosfera.ru/ru/" target="_blank" rel="noopener noreferrer">
               <h3>Торговая площадка для генеральных подрядчиков и поставщиков</h3>
-            </article>
+            </a>
 
-            <article class="benefit-card benefit-bottom-center" data-num="4">
+            <a class="benefit-card benefit-bottom-center benefit-link" data-num="4" href="https://cyber-mfg.com/" target="_blank" rel="noopener noreferrer">
               <h3>Система оперативного производства металлических конструкций</h3>
-            </article>
+            </a>
 
             <article class="benefit-card benefit-bottom-right" data-num="5">
               <h3>Платформа поддержки проектов</h3>

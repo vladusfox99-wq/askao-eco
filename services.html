@@ -290,14 +290,12 @@
         <span>Экосистема АСКАО</span>
       </a>
       <nav class="nav">
-        <a href="index.html">Главная</a>
         <a href="index.html#functions">Закупки</a>
         <a href="index.html#news">Новости</a>
-        <a href="#">АСКАО.Витрина</a>
+        <a href="https://accni.scalesta.net/" target="_blank" rel="noopener noreferrer">АСКАО.Витрина</a>
         <a href="https://askao.innosfera.ru/" target="_blank" rel="noopener noreferrer">АСКАО.Наука</a>
         <a href="#">Проекты</a>
-        <a class="active" href="services.html">Услуги</a>
-        <a href="#">Финансово-Юридические услуги</a>
+        <a class="active" href="#finance-services">Финансово-Юридические услуги</a>
       </nav>
     </div>
   </header>
@@ -324,7 +322,7 @@
         <article class="service-card"><div class="service-card-body"><h3>Маркетинговые исследования</h3><p>Подготовка дорожной карты для организаций, стремящихся сотрудничать с корпорациями, крупными холдингами и интегрированными структурами.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
       </section>
 
-      <section class="services-content hidden" data-content="finance">
+      <section class="services-content hidden" data-content="finance" id="finance-services">
         <article class="service-card"><div class="service-card-body"><h3>Банковская гарантия</h3><p>Письменное обязательство банка выплатить определенную сумму денег бенефициару, если принципал не выполнит свои обязательства перед ним.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
         <article class="service-card"><div class="service-card-body"><h3>Невозобновляемая кредитная линия</h3><p>Форма кредита, при которой заемщик может получать средства частями в рамках установленного лимита и срока.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
         <article class="service-card"><div class="service-card-body"><h3>Возобновляемая кредитная линия</h3><p>Форма кредита, при которой заемщик может многократно получать и погашать кредит в рамках установленного лимита.</p></div><div class="service-card-footer"><button class="consult-btn">Запросить консультацию</button></div></article>
@@ -406,28 +404,40 @@
 
     revealTargets.forEach((element) => observer.observe(element));
 
+    const activateCategory = (category) => {
+      const targetButton = document.querySelector(`.category-btn[data-category="${category}"]`);
+      if (!targetButton) return;
+
+      buttons.forEach((item) => item.classList.remove('active'));
+      targetButton.classList.add('active');
+
+      contents.forEach((content) => {
+        content.classList.toggle('hidden', content.dataset.content !== category);
+      });
+
+      requestAnimationFrame(() => {
+        document
+          .querySelectorAll(`.services-content[data-content="${category}"] .service-card`)
+          .forEach((card, index) => {
+            card.style.animation = 'none';
+            card.offsetHeight;
+            card.style.animation = `fadeUp .32s ease ${index * 35}ms both`;
+          });
+      });
+    };
+
     buttons.forEach((button) => {
       button.addEventListener('click', () => {
-        const category = button.dataset.category;
-
-        buttons.forEach((item) => item.classList.remove('active'));
-        button.classList.add('active');
-
-        contents.forEach((content) => {
-          content.classList.toggle('hidden', content.dataset.content !== category);
-        });
-
-        requestAnimationFrame(() => {
-          document
-            .querySelectorAll(`.services-content[data-content="${category}"] .service-card`)
-            .forEach((card, index) => {
-              card.style.animation = 'none';
-              card.offsetHeight;
-              card.style.animation = `fadeUp .32s ease ${index * 35}ms both`;
-            });
-        });
+        activateCategory(button.dataset.category);
       });
     });
+
+    if (window.location.hash === '#finance-services') {
+      activateCategory('finance');
+      requestAnimationFrame(() => {
+        document.getElementById('finance-services')?.scrollIntoView({ block: 'start' });
+      });
+    }
   </script>
 </body>
 </html>
