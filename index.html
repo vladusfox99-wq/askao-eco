@@ -469,7 +469,6 @@
     .benefit-bottom-center { grid-column: 2; }
     .benefit-bottom-right { grid-column: 3; }
 
-    .function-card,
     .news-card,
     .contact-card {
       background: white;
@@ -479,7 +478,6 @@
       box-shadow: 0 12px 34px rgba(16,35,63,.08);
       transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
     }
-    .function-card:hover,
     .news-card:hover,
     .contact-card:hover {
       transform: translateY(-4px);
@@ -487,61 +485,167 @@
       box-shadow: 0 18px 38px rgba(16,35,63,.12);
     }
 
-    .function-card h3,
     .news-card h3,
     .contact-card h3 { margin: 0 0 10px; font-size: 20px; }
 
-    .function-card p,
     .news-card p,
     .contact-card p { margin: 0; color: var(--muted); }
-
-    .icon {
-      width: 54px;
-      height: 54px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, #e8f2ff, #def9ff);
-      color: var(--blue);
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      margin-bottom: 16px;
-    }
 
     .functions { background: #ffffff; }
     .functions-layout {
       display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap: 44px;
-      align-items: start;
+      grid-template-columns: minmax(320px, .86fr) minmax(0, 1.14fr);
+      gap: 30px;
+      align-items: stretch;
     }
-    .function-list {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-    .blue-panel {
+
+    .platform-sidebar {
       background: linear-gradient(180deg, #0c3b84, #092a5f);
       color: white;
-      border-radius: 30px;
+      border-radius: 28px;
       padding: 30px;
-      min-height: 100%;
+      min-height: 620px;
+      display: flex;
+      flex-direction: column;
       box-shadow: var(--shadow);
     }
-    .blue-panel h3 { margin: 0 0 16px; font-size: 30px; line-height: 1.1; }
-    .blue-panel p { color: #d6e7ff; margin: 0 0 20px; }
-    .blue-list { display: grid; gap: 12px; }
-    .blue-line {
-      padding: 13px 14px;
-      border-radius: 16px;
-      background: rgba(255,255,255,.09);
-      border: 1px solid rgba(255,255,255,.12);
-      color: #edf6ff;
-      transition: background .2s ease, transform .2s ease, border-color .2s ease;
+    .platform-sidebar h3 { margin: 0 0 14px; font-size: 48px; line-height: 1; letter-spacing: 0; }
+    .platform-sidebar > p { margin: 0; color: #d6e7ff; font-size: 18px; line-height: 1.45; max-width: 92%; }
+
+    .platform-scroll {
+      margin-top: 20px;
+      padding-right: 8px;
+      display: grid;
+      gap: 10px;
+      max-height: 430px;
+      overflow-y: auto;
     }
-    .blue-line:hover {
+
+    .platform-scroll::-webkit-scrollbar { width: 8px; }
+    .platform-scroll::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,.34);
+      border-radius: 999px;
+    }
+
+    .platform-item {
+      width: 100%;
+      text-align: left;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 16px;
+      background: rgba(255,255,255,.08);
+      color: #edf6ff;
+      padding: 14px 16px;
+      cursor: pointer;
+      transition: background .2s ease, border-color .2s ease, transform .2s ease;
+    }
+    .platform-item:hover {
+      background: rgba(255,255,255,.14);
+      border-color: rgba(255,255,255,.28);
       transform: translateX(4px);
-      background: rgba(255,255,255,.15);
-      border-color: rgba(255,255,255,.24);
+    }
+    .platform-item.active {
+      background: rgba(255,255,255,.2);
+      border-color: rgba(255,255,255,.4);
+      box-shadow: inset 4px 0 0 rgba(255,255,255,.36);
+    }
+
+    .platform-item-title {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .platform-item-points {
+      margin: 0;
+      padding-left: 0;
+      font-size: 14px;
+      line-height: 1.4;
+      color: #d6e7ff;
+      display: grid;
+      gap: 4px;
+    }
+
+    .platform-point {
+      display: block;
+      position: relative;
+      padding-left: 14px;
+    }
+
+    .platform-point::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .55em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.7);
+    }
+
+    .platform-viewer {
+      min-height: 620px;
+      border-radius: 24px;
+      border: 1px solid #d2dde8;
+      background: #dfe5ef;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .platform-viewer-head {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .platform-nav {
+      width: 34px;
+      height: 34px;
+      border: 0;
+      border-radius: 8px;
+      background: #cfe8f4;
+      color: #fff;
+      font-size: 20px;
+      line-height: 1;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: transform .2s ease, background .2s ease;
+    }
+    .platform-nav:hover {
+      transform: translateY(-1px);
+      background: #b8dae9;
+    }
+
+    .platform-screen {
+      flex: 1;
+      min-height: 0;
+      border-radius: 18px;
+      background: rgba(255,255,255,.55);
+      display: grid;
+      place-items: end center;
+      overflow: hidden;
+      padding: 12px;
+    }
+
+    .platform-screen img {
+      width: min(100%, 760px);
+      height: auto;
+      max-height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 12px 30px rgba(16, 35, 63, .28));
+    }
+
+    .platform-caption {
+      font-size: 20px;
+      font-weight: 800;
+      color: #1f2d43;
+      line-height: 1.2;
     }
 
     .market-strip {
@@ -651,17 +755,24 @@
       .benefit-bottom-right { grid-column: auto; grid-row: auto; }
       .news-grid,
       .contacts-grid { grid-template-columns: 1fr; }
+      .platform-sidebar,
+      .platform-viewer { min-height: auto; }
+      .platform-scroll { max-height: 340px; }
     }
     @media (max-width: 720px) {
       .hero { padding: 48px 0; }
       .hero-actions { align-items: stretch; }
       .btn { width: 100%; }
       .benefits-grid,
-      .function-list,
       .strip-grid,
       .data-grid { grid-template-columns: 1fr; }
       .header { position: static; }
       .data-card { min-height: auto; }
+      .platform-sidebar h3 { font-size: 38px; }
+      .platform-sidebar > p { font-size: 16px; max-width: 100%; }
+      .platform-item-title { font-size: 18px; }
+      .platform-caption { font-size: 18px; }
+      .platform-viewer { padding: 16px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -761,23 +872,56 @@
 
     <section class="section functions" id="functions">
       <div class="container functions-layout">
-        <div class="blue-panel">
+        <div class="platform-sidebar">
           <h3>Базовый функционал</h3>
           <p>Функциональность адаптирована под строительный B2B-маркетплейс: не просто витрина товаров, а инструмент для закупочного и технического решения.</p>
-          <div class="blue-list">
-            <div class="blue-line">Единый кодификатор строительных данных</div>
-            <div class="blue-line">Характеристики, зависимости и применимость</div>
-            <div class="blue-line">Поставщики, подрядчики и компетенции</div>
-            <div class="blue-line">Интеграция с 1С, ERP, BIM, CAD/CAE</div>
+          <div class="platform-scroll">
+            <button class="platform-item active" type="button" data-title="АСКАО.Витрина" data-image="assets/platform-screen-main.png" data-alt="Скриншот платформы АСКАО.Витрина">
+              <span class="platform-item-title">АСКАО.Витрина</span>
+              <div class="platform-item-points">
+                <span class="platform-point">Каталог материалов с параметрами.</span>
+                <span class="platform-point">Сравнение и подбор аналогов.</span>
+              </div>
+            </button>
+            <button class="platform-item" type="button" data-title="АСКАО.Наука" data-image="assets/platform-screen-science.png" data-alt="Скриншот платформы АСКАО.Наука">
+              <span class="platform-item-title">АСКАО.Наука</span>
+              <div class="platform-item-points">
+                <span class="platform-point">База научных разработок и решений.</span>
+                <span class="platform-point">Связка с отраслевыми задачами.</span>
+              </div>
+            </button>
+            <button class="platform-item" type="button" data-title="B2B Маркет" data-image="assets/platform-screen-b2b-market.png" data-alt="Скриншот B2B Маркета">
+              <span class="platform-item-title">B2B Маркет</span>
+              <div class="platform-item-points">
+                <span class="platform-point">Работа с поставщиками и подрядчиками.</span>
+                <span class="platform-point">Запросы КП и закупочные сценарии.</span>
+              </div>
+            </button>
+            <button class="platform-item" type="button" data-title="Виртуальная фабрика" data-image="assets/platform-screen-main.png" data-alt="Скриншот платформы Виртуальная фабрика">
+              <span class="platform-item-title">Виртуальная фабрика</span>
+              <div class="platform-item-points">
+                <span class="platform-point">Производственные цепочки по МК.</span>
+                <span class="platform-point">Оперативный расчет сроков и стоимости.</span>
+              </div>
+            </button>
+            <button class="platform-item" type="button" data-title="Платформа поддержки проектов" data-image="assets/platform-screen-main.png" data-alt="Скриншот платформы поддержки проектов">
+              <span class="platform-item-title">Поддержка проектов</span>
+              <div class="platform-item-points">
+                <span class="platform-point">Контроль этапов проектной реализации.</span>
+                <span class="platform-point">Единая среда взаимодействия команд.</span>
+              </div>
+            </button>
           </div>
         </div>
-        <div class="function-list">
-          <article class="function-card"><div class="icon">М</div><h3>Материалы</h3><p>Каталог материалов с параметрами, сертификатами, аналогами и историей применения.</p></article>
-          <article class="function-card"><div class="icon">Т</div><h3>Технологии</h3><p>Технологические процессы, требования, методики испытаний и условия использования.</p></article>
-          <article class="function-card"><div class="icon">К</div><h3>Конструкции</h3><p>Связь материалов, проектных решений и конструктивных элементов.</p></article>
-          <article class="function-card"><div class="icon">П</div><h3>Партнеры</h3><p>Поиск компаний, компетенций, географии поставки и условий сотрудничества.</p></article>
-          <article class="function-card"><div class="icon">Д</div><h3>Документы</h3><p>Цифровые паспорта, сертификаты, договорные файлы и подтверждающие материалы.</p></article>
-          <article class="function-card"><div class="icon">А</div><h3>Аналитика</h3><p>Сравнение стоимости, сроков, надежности и эффективности закупочного процесса.</p></article>
+        <div class="platform-viewer">
+          <div class="platform-viewer-head">
+            <button class="platform-nav prev" type="button" aria-label="Предыдущая платформа">&larr;</button>
+            <button class="platform-nav next" type="button" aria-label="Следующая платформа">&rarr;</button>
+          </div>
+          <div class="platform-screen">
+            <img id="platform-screen-image" src="assets/platform-screen-main.png" alt="Скриншот платформы АСКАО.Витрина" />
+          </div>
+          <div class="platform-caption" id="platform-caption">АСКАО.Витрина</div>
         </div>
       </div>
     </section>
@@ -813,9 +957,9 @@
           <h2>Единая точка входа для заказчиков, поставщиков и подрядчиков</h2>
         </div>
         <div class="contacts-grid">
-          <article class="contact-card"><h3>Адрес</h3><p>Москва, корпоративный контур платформы</p></article>
-          <article class="contact-card"><h3>Телефон</h3><p>+7 (000) 000-00-00</p></article>
-          <article class="contact-card"><h3>E-mail</h3><p>market@example.ru</p></article>
+          <article class="contact-card"><h3>Телефон</h3><p>+7 (495) 795-71-87 доб. 205<br>+7 (499) 949-43-95 доб. 3530</p></article>
+          <article class="contact-card"><h3>E-mail</h3><p>accni@mail.ru</p></article>
+          <article class="contact-card"><h3>Адрес</h3><p>г. Москва, ул. Обручева, д. 30/1, стр. 1, ячейка 12 «АСКАО»</p></article>
         </div>
       </div>
     </section>
@@ -848,7 +992,7 @@
   <script>
     const header = document.querySelector('.header');
     const revealTargets = document.querySelectorAll(
-      '.hero h1, .hero-subpoints li, .hero-actions .btn, .section-head, .benefit-card, .function-card, .blue-line, .news-card, .contact-card, .cta-box'
+      '.hero h1, .hero-subpoints li, .hero-actions .btn, .section-head, .benefit-card, .platform-sidebar, .platform-item, .platform-viewer, .news-card, .contact-card, .cta-box'
     );
 
     window.addEventListener('scroll', () => {
@@ -870,6 +1014,41 @@
     }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
 
     revealTargets.forEach((element) => observer.observe(element));
+
+    const platformItems = Array.from(document.querySelectorAll('.platform-item'));
+    const platformImage = document.getElementById('platform-screen-image');
+    const platformCaption = document.getElementById('platform-caption');
+    const prevPlatformButton = document.querySelector('.platform-nav.prev');
+    const nextPlatformButton = document.querySelector('.platform-nav.next');
+    let activePlatformIndex = platformItems.findIndex((item) => item.classList.contains('active'));
+
+    if (platformItems.length && platformImage && platformCaption) {
+      if (activePlatformIndex < 0) {
+        activePlatformIndex = 0;
+      }
+
+      const setActivePlatform = (index) => {
+        activePlatformIndex = (index + platformItems.length) % platformItems.length;
+
+        platformItems.forEach((item, itemIndex) => {
+          item.classList.toggle('active', itemIndex === activePlatformIndex);
+        });
+
+        const activeItem = platformItems[activePlatformIndex];
+        platformImage.src = activeItem.dataset.image || platformImage.src;
+        platformImage.alt = activeItem.dataset.alt || "Скриншот платформы";
+        platformCaption.textContent = activeItem.dataset.title || "";
+        activeItem.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      };
+
+      platformItems.forEach((item, index) => {
+        item.addEventListener('click', () => setActivePlatform(index));
+      });
+
+      prevPlatformButton?.addEventListener('click', () => setActivePlatform(activePlatformIndex - 1));
+      nextPlatformButton?.addEventListener('click', () => setActivePlatform(activePlatformIndex + 1));
+      setActivePlatform(activePlatformIndex);
+    }
   </script>
 </body>
 </html>
